@@ -36,5 +36,13 @@ router.get("/", authMiddleware, async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 });
-
+// GET all jobs
+router.get("/", async (req, res) => {
+  try {
+    const jobs = await Job.find().populate("client", "displayName email");
+    res.json(jobs);
+  } catch (err) {
+    res.status(500).json({ message: "Error fetching jobs", error: err.message });
+  }
+});
 export default router;

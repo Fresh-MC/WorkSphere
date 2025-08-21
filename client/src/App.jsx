@@ -9,6 +9,8 @@ import Loader from "./components/Loader";
 import texture from "./assets/asfalt-dark.png";
 import PostJob from "./components/PostJob";
 import FreelancerJobs from "./pages/FreelancerJobs";
+import JobSearch from "./pages/JobSearch";
+import Portfolio from "./pages/Portfolio";
 
 // PrivateRoute component
 function PrivateRoute({ children }) {
@@ -45,11 +47,35 @@ function AppContent() {
       </PrivateRoute>
     }
   />
+   <Route
+    path="/job-search"
+    element={
+      <PrivateRoute>
+        <JobSearch />
+      </PrivateRoute>
+    }
+  />
+   <Route
+    path="/portfolio"
+    element={
+      <PrivateRoute>
+        <Portfolio />
+      </PrivateRoute>
+    }
+  />
   <Route
             path="/post-job"
             element={
               <PrivateRoute role="client">
                 <PostJob />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/search"
+            element={
+              <PrivateRoute role="freelancer">
+                <JobSearch />
               </PrivateRoute>
             }
           />
